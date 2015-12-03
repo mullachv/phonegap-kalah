@@ -2,10 +2,11 @@
 <!-- See: https://github.com/phonegap/phonegap-start/blob/master/www/config.xml -->
 <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
+        xmlns:android   = "http://schemas.android.com/apk/res/android"
         id          = "com.gamingplatform.kalah"
         versionCode = "10"
-        version     = "1.0.0" >
-        
+        version     = "1.0.0">
+
     <!-- versionCode is optional and Android only:
       needs to be increased every time you submit a new APK version.
       see: http://developer.android.com/tools/publishing/versioning.html
@@ -127,7 +128,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 
-      <!-- To launch the app by a link like this (you can't type it in directly in the browser! it has to be a link on a webpage):
+  <!-- To launch the app by a link like this (you can't type it in directly in the browser! it has to be a link on a webpage):
       kalah://
       For iOS, see
         http://docs.build.phonegap.com/en_US/configuring_custom_urls.md.html
@@ -156,5 +157,4 @@
   <gap:url-scheme>
     <scheme>kalah</scheme>
   </gap:url-scheme>
-
 </widget>
