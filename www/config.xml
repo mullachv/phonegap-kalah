@@ -5,6 +5,7 @@
         id          = "com.gamingplatform.kalah"
         versionCode = "10"
         version     = "1.0.0" >
+        
     <!-- versionCode is optional and Android only:
       needs to be increased every time you submit a new APK version.
       see: http://developer.android.com/tools/publishing/versioning.html
