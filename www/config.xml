@@ -4,17 +4,17 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         xmlns:android   = "http://schemas.android.com/apk/res/android"
         id          = "com.gamingplatform.kalah"
-        versionCode = "13"
-        version     = "13.0.0" >
+        versionCode = "14"
+        version     = "14.0.0" >
     <!-- versionCode is optional and Android only:
       needs to be increased every time you submit a new APK version.
       see: http://developer.android.com/tools/publishing/versioning.html
     -->
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-      <string>013</string>
+      <string>1400</string>
     </gap:config-file>
 
-    <name>Kalah</name>
+    <name>kalah</name>
     <author email="mullachv@gmail.com">
         mullachv@gmail.com
     </author>
@@ -102,7 +102,7 @@
     <!-- see: https://build.phonegap.com/plugins/1246 -->
     <gap:plugin name="com.phonegap.plugins.facebookconnect" source="pgb" version="0.9.0">
         <param name="APP_ID" value="1532583813700530" />
-        <param name="APP_NAME" value="MISSING" />
+        <param name="APP_NAME" value="kalah" />
     </gap:plugin>
 
     <!--
@@ -153,7 +153,7 @@
     <gap:config-file platform="android" parent="/manifest/application" mode="add" >
       <activity
           android:configChanges="locale|keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-          android:name=".MISSING" android:label="@string/app_name"
+          android:name=".kalah" android:label="@string/app_name"
           android:screenOrientation="unspecified"
           android:launchMode="singleTask"
           android:windowSoftInputMode="adjustUnspecified|stateUnspecified">
