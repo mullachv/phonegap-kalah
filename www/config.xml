@@ -4,20 +4,22 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         xmlns:android   = "http://schemas.android.com/apk/res/android"
         id          = "com.gamingplatform.kalah"
-        versionCode = "14"
-        version     = "14.0.0" >
+        versionCode = "15"
+        version     = "15.0.0" >
     <!-- versionCode is optional and Android only:
       needs to be increased every time you submit a new APK version.
       see: http://developer.android.com/tools/publishing/versioning.html
     -->
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-      <string>1400</string>
+      <string>1500</string>
     </gap:config-file>
 
     <name>kalah</name>
     <author email="mullachv@gmail.com">
         mullachv@gmail.com
     </author>
+
+    <preference name="android-build-tool" value="gradle" />
 
     <!--
         If you do not want any permissions to be added to your app, add the
@@ -29,7 +31,7 @@
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="cli-5.2.0" />
-    <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
+    <preference name="orientation"                value="landscape" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="fullscreen"                 value="false" />          <!-- all: hides the status bar at the top of the screen -->
     <preference name="target-device"              value="universal" />      <!-- ios: possible values handset, tablet, or universal -->
     <preference name="prerendered-icon"           value="false" />          <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
@@ -41,8 +43,8 @@
     <preference name="ios-statusbarstyle"         value="black-opaque" />   <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
     <preference name="show-splash-screen-spinner" value="true" />           <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
     <preference name="auto-hide-splash-screen"    value="true" />           <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
-    <preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
-    <preference name="android-targetSdkVersion"   value="14" />             <!-- To hide the "..." (overflow menu) on Android, see http://stackoverflow.com/questions/20375626/disabling-android-menu-button-in-phonegap-build -->
+    <preference name="android-minSdkVersion"      value="15" />             <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
+    <preference name="android-targetSdkVersion"   value="15" />             <!-- To hide the "..." (overflow menu) on Android, see http://stackoverflow.com/questions/20375626/disabling-android-menu-button-in-phonegap-build -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
 
     <!-- Hiding status bar on ios, see http://stackoverflow.com/questions/20734117/how-to-remove-ios-status-bar-with-phonegap-build -->
@@ -97,10 +99,10 @@
     <icon src="pgbomit/icon-80.png" gap:platform="ios" width="80" height="80" />
 
     <!-- see: https://www.npmjs.com/package/phonegap-plugin-push -->
-    <gap:plugin name="phonegap-plugin-push" source="npm" version="1.2.3" />
+    <gap:plugin name="phonegap-plugin-push" source="npm" />
 
-    <!-- see: https://build.phonegap.com/plugins/1246 -->
-    <gap:plugin name="com.phonegap.plugins.facebookconnect" source="pgb" version="0.9.0">
+    <!-- see: https://www.npmjs.com/package/cordova-plugin-facebook4 -->
+    <gap:plugin name="cordova-plugin-facebook4" source="npm">
         <param name="APP_ID" value="1532583813700530" />
         <param name="APP_NAME" value="kalah" />
     </gap:plugin>
@@ -112,7 +114,7 @@
     <access origin="*"/>
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <allow-navigation href="http://*/*" />
     <allow-navigation href="https://*/*" />
     <allow-intent href="*" />
@@ -132,44 +134,15 @@
 
     <!-- To take printscreen for sharing/feedback. Requires WRITE_EXTERNAL_STORAGE permission.
       https://github.com/gitawego/cordova-screenshot.git
-      https://www.npmjs.com/package/com.darktalker.cordova.screenshot
-      https://build.phonegap.com/plugins/2828 -->
+      https://www.npmjs.com/package/com.darktalker.cordova.screenshot -->
     <gap:plugin name="com.darktalker.cordova.screenshot" source="npm" />
 
     <!-- To allow easy social sharing using native intents. Requires WRITE_EXTERNAL_STORAGE permission.
       https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin -->
-    <gap:plugin name="nl.x-services.plugins.socialsharing" source="pgb" version="4.3.0" />
+    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
 
-    <!-- To launch the app by a link like this (you can't type it in directly in the browser! it has to be a link on a webpage):
-        kalah://
-        For iOS, see
-          http://docs.build.phonegap.com/en_US/configuring_custom_urls.md.html
-        For android, see
-          https://appurl.org/docs-handling-android
-        Additionally in Android, to avoid restarting the app after rotation (i.e., orientation change),
-        I added this to the activity:
-          android:configChanges="locale|keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-    -->
-    <gap:config-file platform="android" parent="/manifest/application" mode="add" >
-      <activity
-          android:configChanges="locale|keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-          android:name=".kalah" android:label="@string/app_name"
-          android:screenOrientation="unspecified"
-          android:launchMode="singleTask"
-          android:windowSoftInputMode="adjustUnspecified|stateUnspecified">
-        <intent-filter>
-          <action android:name="android.intent.action.MAIN"/>
-          <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
-        <intent-filter>
-          <action android:name="android.intent.action.VIEW"/>
-          <category android:name="android.intent.category.DEFAULT"/>
-          <category android:name="android.intent.category.BROWSABLE"/>
-          <data android:scheme="kalah"/>
-        </intent-filter>
-      </activity>
-    </gap:config-file>
-    <gap:url-scheme>
-      <scheme>kalah</scheme>
-    </gap:url-scheme>
+    <!-- https://github.com/EddyVerbruggen/Custom-URL-scheme -->
+    <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+      <param name="URL_SCHEME" value="kalah" />
+    </gap:plugin>
 </widget>
